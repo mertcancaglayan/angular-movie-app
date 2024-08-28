@@ -1,0 +1,29 @@
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  width: 327px;
+  height: 42px;
+  background: #3a3f47;
+  border-radius: 16px;
+
+  input {
+    outline: none;
+    border: none;
+    background: #3a3f47;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #67686d;
+  }
+
+  button {
+    outline: none;
+    border: none;
+    background: #3a3f47;
+    color: white;
+  }
+}
