@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoadingScreenComponent } from "./components/loading-screen/loading-screen.component";
 import { HomeComponent } from "./components/home/home.component";
+import { SearchPageComponent } from "./components/search-page/search-page.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoadingScreenComponent, HomeComponent],
+  imports: [RouterOutlet, LoadingScreenComponent, HomeComponent, SearchPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
