@@ -4,11 +4,12 @@ import { LoadingScreenComponent } from "./components/loading-screen/loading-scre
 import { HomeComponent } from "./components/home/home.component";
 import { SearchPageComponent } from "./components/search-page/search-page.component";
 import { SingleMovieComponent } from "./components/single-movie/single-movie.component";
+import { WatchListComponent } from "./components/watch-list/watch-list.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoadingScreenComponent, HomeComponent, SearchPageComponent, SingleMovieComponent],
+  imports: [RouterOutlet, LoadingScreenComponent, HomeComponent, SearchPageComponent, SingleMovieComponent, WatchListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
