@@ -3,21 +3,31 @@
   align-items: start;
   height: 260px;
   width: 337px;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 
   &::-webkit-scrollbar {
     display: none;
   }
 
   .slider {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 40px;
-    height: 210px;
+    gap: 25px;
+    height: 100%;
     margin-left: 10px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-inline: contain;
+  }
+
+  .snaps-inline {
+    scroll-snap-type: inline mandatory;
+  }
+
+  .snaps-inline > * {
+    scroll-snap-align: start;
   }
 }
