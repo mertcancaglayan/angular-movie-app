@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { TabbarComponent } from '../tabbar/tabbar.component';
 import { HeaderComponent } from '../layouts/header/header.component';
+import { TabbarComponent } from '../layouts/tabbar/tabbar.component';
 
 @Component({
   selector: 'app-watch-list',
   standalone: true,
-  imports: [TabbarComponent, HeaderComponent],
+  imports: [HeaderComponent, TabbarComponent],
   templateUrl: './watch-list.component.html',
   styleUrl: './watch-list.component.scss',
 })
