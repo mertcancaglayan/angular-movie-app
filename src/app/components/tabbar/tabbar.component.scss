@@ -32,6 +32,24 @@
       flex-direction: column;
       align-items: center;
       gap: 2px;
+      padding: 10px 20px;
+    }
+
+    li.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 10px 20px;
+      color: #0296e5;
+
+      span {
+        svg {
+          * {
+            stroke: #0296e5;
+          }
+        }
+      }
     }
   }
 }
