@@ -19,30 +19,5 @@
     gap: 40px;
     height: 210px;
     margin-left: 10px;
-
-    .slide {
-      position: relative;
-
-      img {
-        width: 145px;
-        height: 210px;
-        border-radius: 16px;
-      }
-
-      .movie-rank {
-        position: absolute;
-        left: -10px;
-        top: 135px;
-        font-family: "Montserrat";
-        font-style: normal;
-        font-weight: 600;
-        font-size: 96px;
-        font-optical-sizing: auto;
-        line-height: 117px;
-        color: #242a32;
-        text-shadow: 0.8px 0.8px 0 #0296e5, -0.8px -0.8px 0 #0296e5,
-          0.8px -0.8px 0 #0296e5, -0.8px 0.8px 0 #0296e5, 0.8px 0.8px 0 #0296e5;
-      }
-    }
   }
 }
