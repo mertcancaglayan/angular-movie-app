@@ -4,7 +4,7 @@
   <div class="banner">
     <img src="../../../assets/images/peakpx.jpg" alt="" />
     <div class="rating banner-rating">
-      <div class="star-icon icon-container">
+      <div class="star-icon icon-container" (click)="displayOverlay()">
         <svg
           width="14"
           height="14"
@@ -258,4 +258,5 @@
       </div>
     </div>
   </section>
+  <app-rate-screen></app-rate-screen>
 </div>
