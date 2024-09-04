@@ -1,14 +1,9 @@
 <div class="slider-container">
   <div class="slider snaps-inline">
-    <app-slide></app-slide>
-    <app-slide></app-slide>
-    <app-slide></app-slide>
-    <app-slide></app-slide>
-    <app-slide></app-slide>
-    <app-slide></app-slide>
-    <app-slide></app-slide>
-    <app-slide></app-slide>
-    <app-slide></app-slide>
-    <app-slide></app-slide>
+    <app-slide
+      *ngFor="let movie of popularMovies; let i = index"
+      [movie]="movie"
+      [listNumber]="i + 1"
+    ></app-slide>
   </div>
 </div>
