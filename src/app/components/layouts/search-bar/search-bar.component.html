@@ -1,7 +1,8 @@
 <div class="search-bar">
-  <form class="search-form">
+  <form class="search-form" (submit)="onSearch($event)">
     <input
       type="text"
+      [(ngModel)]="searchQuery"
       name="searchQuery"
       class="form-control"
       placeholder="Search"
