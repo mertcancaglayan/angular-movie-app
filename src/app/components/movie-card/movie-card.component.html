@@ -1,10 +1,10 @@
 <div class="card">
   <div class="card-img-container">
-    <img src="../../../assets/images/img (10).jpg" alt="" />
+    <img [src]="getPosterUrl(movie.poster_path)" alt="" />
   </div>
   <div class="card-movie-content">
     <div class="movie-title">
-      <h3>Spiderman</h3>
+      <h3>{{ movie.title }}</h3>
     </div>
     <div class="card-movie-details">
       <div class="rating">
@@ -24,7 +24,7 @@
             />
           </svg>
         </div>
-        <p class="rating-score">9.3</p>
+        <p class="rating-score">{{ movie.vote_average }}</p>
       </div>
       <div class="genres">
         <div class="ticket-icon icon-container">

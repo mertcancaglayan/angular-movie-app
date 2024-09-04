@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieCardComponent } from '../movie-card/movie-card.component';
+import { ApiService } from '../../services/api-service.service';
+import { SearchService } from '../../services/search-service.service';
 import { HeaderComponent } from '../layouts/header/header.component';
 import { SearchBarComponent } from '../layouts/search-bar/search-bar.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 import { TabbarComponent } from '../layouts/tabbar/tabbar.component';
-import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../../services/api-service.service';
-import { response } from 'express';
 
 @Component({
   selector: 'app-search-page',
   standalone: true,
+  templateUrl: './search-page.component.html',
+  styleUrls: ['./search-page.component.scss'],
   imports: [
-    MovieCardComponent,
     HeaderComponent,
     SearchBarComponent,
+    SearchResultsComponent,
     TabbarComponent,
   ],
-  templateUrl: './search-page.component.html',
-  styleUrl: './search-page.component.scss',
 })
 export class SearchPageComponent implements OnInit {
   title: string = 'Search';
@@ -25,14 +24,16 @@ export class SearchPageComponent implements OnInit {
   searchedQuery: string = '';
   movies: any;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((params) => {
-      this.searchedQuery = params.get('q') || '';
+    this.searchService.searchQuery.subscribe((query) => {
+      this.searchedQuery = query;
       if (this.searchedQuery.trim()) {
         this.fetchSearchMovies(this.searchedQuery);
-        console.log(this.movies);
       }
     });
   }
@@ -44,7 +45,7 @@ export class SearchPageComponent implements OnInit {
         this.error = false;
       },
       (error) => {
-        console.error('Error fetching news:', error);
+        console.error('Error fetching movies:', error);
         this.error = true;
       }
     );

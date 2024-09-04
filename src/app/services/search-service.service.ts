@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class SearchServiceService {
+export class SearchService {
   public searchQuerySubject = new BehaviorSubject<string>('');
   searchQuery = this.searchQuerySubject.asObservable();
 
