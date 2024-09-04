@@ -11,4 +11,6 @@ import { CommonModule } from '@angular/common';
 })
 export class SearchResultsComponent {
   @Input() movies: any;
+  searchCard: string = "searchCard"
+
 }

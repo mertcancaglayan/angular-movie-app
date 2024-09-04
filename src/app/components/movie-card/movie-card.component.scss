@@ -1,4 +1,4 @@
-.card {
+.card.content-class {
   display: flex;
   width: 327px;
   height: min-content;
@@ -90,5 +90,13 @@
         color: #eeeeee;
       }
     }
+  }
+}
+
+.card.photo-class {
+  img {
+    width: 100px;
+    height: 146px;
+    border-radius: 16px;
   }
 }
