@@ -1,10 +1,10 @@
 <section class="categories-section">
   <div class="category-list">
     <ul>
-      <li>Now playing</li>
-      <li>Upcoming</li>
-      <li>Top rated</li>
-      <li>Popular</li>
+      <li (click)="onCategorySelect('now_playing')">Now playing</li>
+      <li (click)="onCategorySelect('upcoming')">Upcoming</li>
+      <li (click)="onCategorySelect('top_rated')">Top rated</li>
+      <li (click)="onCategorySelect('popular')">Popular</li>
     </ul>
   </div>
   <div class="display-movies">
