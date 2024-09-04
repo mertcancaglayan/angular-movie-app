@@ -7,23 +7,42 @@
   height: 42px;
   background: #3a3f47;
   border-radius: 16px;
+}
 
-  input {
-    outline: none;
-    border: none;
-    background: #3a3f47;
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 21px;
-    color: #67686d;
-  }
+.search-form input {
+  outline: none;
+  border: none;
+  background: #3a3f47;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: white;
+}
 
-  button {
-    outline: none;
-    border: none;
-    background: #3a3f47;
-    color: white;
-  }
+.search-form input::placeholder {
+  color: #67686d;
+}
+
+.search-form button {
+  outline: none;
+  border: none;
+  background: #3a3f47;
+  color: white;
+}
+
+input:-webkit-autofill {
+  background-color: #3a3f47 !important;
+  color: white !important;
+}
+
+input:-moz-autofill {
+  background-color: #3a3f47 !important;
+  color: white !important;
+}
+
+input:-ms-autofill {
+  background-color: #3a3f47 !important;
+  color: white !important;
 }

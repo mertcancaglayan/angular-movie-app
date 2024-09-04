@@ -3,7 +3,12 @@
 
   <app-search-bar></app-search-bar>
 
-  <app-search-results [movies] = "movies"></app-search-results>
+  <app-search-results
+    *ngIf="movies && movies.length"
+    [movies]="movies"
+  ></app-search-results>
+
+  <app-no-result *ngIf="!movies || movies.length === 0"></app-no-result>
 
   <app-tabbar></app-tabbar>
 </div>
