@@ -8,8 +8,10 @@
     </ul>
   </div>
   <div class="display-movies">
-    <div class="movie" *ngFor="let movie of movies">
-      <img [src]="getPosterUrl(movie.poster_path)" alt="" />
-    </div>
+    <app-movie-card
+      *ngFor="let movie of movies"
+      [movie]="movie"
+      [showElement]="homePageCard"
+    ></app-movie-card>
   </div>
 </section>

@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api-service.service';
 import { CommonModule } from '@angular/common';
+import { MovieCardComponent } from '../../movie-card/movie-card.component';
 
 @Component({
   selector: 'app-main-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MovieCardComponent],
   templateUrl: './main-section.component.html',
   styleUrls: ['./main-section.component.scss'],
 })
 export class MainSectionComponent implements OnInit {
+  homePageCard: string = 'homePageCard';
   movies: any;
   error: boolean = false;
 

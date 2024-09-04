@@ -1,8 +1,18 @@
-<div class="card">
-  <div class="card-img-container">
+<div
+  class="card"
+  [ngClass]="{
+    'photo-class':
+      showElement === 'homePageCard' || showElement === 'searchCard',
+    'content-class': showElement === 'searchCard'
+  }"
+>
+  <div
+    class="card-img-container"
+    *ngIf="showElement === 'homePageCard' || showElement === 'searchCard'"
+  >
     <img [src]="getPosterUrl(movie.poster_path)" alt="" />
   </div>
-  <div class="card-movie-content">
+  <div class="card-movie-content" *ngIf="showElement === 'searchCard'">
     <div class="movie-title">
       <h3>{{ movie.title }}</h3>
     </div>

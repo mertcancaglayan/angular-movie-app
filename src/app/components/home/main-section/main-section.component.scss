@@ -21,7 +21,7 @@
       justify-content: start;
       width: 100%;
       list-style: none;
-      gap: 18px;
+      gap: 15px;
       color: white;
       white-space: nowrap;
       font-family: "Poppins";
@@ -37,13 +37,6 @@
     flex-wrap: wrap;
     margin: 20px 0 78px;
     gap: 13px;
-    .movie {
-      img {
-        width: 100px;
-        height: 146px;
-        border-radius: 16px;
-      }
-    }
   }
 }
 
