@@ -16,6 +16,21 @@ export class ApiService {
     return this.http.get(url);
   }
 
+  getNowPlayingMovies(): Observable<any> {
+    let url = `${this.baseUrl}/movie/now_playing?language=en-US&page=1&api_key=${this.apiKey}`;
+    return this.http.get(url);
+  }
+
+  getTapRatedMovies(): Observable<any> {
+    let url = `${this.baseUrl}/movie/top_rated?language=en-US&page=1&api_key=${this.apiKey}`;
+    return this.http.get(url);
+  }
+
+  getUpComingMovies(): Observable<any> {
+    let url = `${this.baseUrl}/movie/upcoming?language=en-US&page=1&api_key=${this.apiKey}`;
+    return this.http.get(url);
+  }
+
   getMovieDetails(movieId: number): Observable<any> {
     let url = `${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}`;
     return this.http.get(url);
