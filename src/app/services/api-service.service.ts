@@ -22,7 +22,7 @@ export class ApiService {
   }
 
   searchMovies(query: string): Observable<any> {
-    let url = `${this.baseUrl}/search/movie?query=${query}&api_key=${this.apiKey}`;
+    let url = `${this.baseUrl}/search/movie?language=en-US&query=${query}&api_key=${this.apiKey}`;
     return this.http.get(url);
   }
 }

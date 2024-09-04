@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SearchServiceService } from '../../../services/search-service.service';
+import { SearchService } from '../../../services/search-service.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,10 +14,7 @@ import { Router } from '@angular/router';
 export class SearchBarComponent {
   searchQuery: string = '';
 
-  constructor(
-    private router: Router,
-    private searchService: SearchServiceService
-  ) {}
+  constructor(private router: Router, private searchService: SearchService) {}
 
   onSearch(event: Event): void {
     event.preventDefault();
