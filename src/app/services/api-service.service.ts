@@ -21,8 +21,8 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  searchMovies(query: string, page: number = 1): Observable<any> {
-    let url = `${this.baseUrl}/search/movie?query=${query}&page=${page}&api_key=${this.apiKey}`;
+  searchMovies(query: string): Observable<any> {
+    let url = `${this.baseUrl}/search/movie?query=${query}&api_key=${this.apiKey}`;
     return this.http.get(url);
   }
 }
