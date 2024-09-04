@@ -1,6 +1,2 @@
-<!-- <app-loading-screen></app-loading-screen> -->
-<!-- <app-home></app-home> -->
-<!-- <app-search-page></app-search-page> -->
-<!-- <app-single-movie></app-single-movie> -->
-<!-- <app-watch-list></app-watch-list> -->
-<router-outlet />
+<app-loading-screen *ngIf="isLoading"></app-loading-screen>
+<router-outlet></router-outlet>
