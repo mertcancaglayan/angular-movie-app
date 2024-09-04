@@ -2,6 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+interface Movies {
+  id: number;
+  title: string;
+  poster_path: string;
+}
+
+interface ApiResponse {
+  results: Movies[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -11,33 +21,33 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getPopularMovies(): Observable<any> {
-    let url = `${this.baseUrl}/movie/popular?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get(url);
+  getPopularMovies(): Observable<ApiResponse> {
+    const url = `${this.baseUrl}/movie/popular?language=en-US&page=1&api_key=${this.apiKey}`;
+    return this.http.get<ApiResponse>(url);
   }
 
-  getNowPlayingMovies(): Observable<any> {
-    let url = `${this.baseUrl}/movie/now_playing?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get(url);
+  getNowPlayingMovies(): Observable<ApiResponse> {
+    const url = `${this.baseUrl}/movie/now_playing?language=en-US&page=1&api_key=${this.apiKey}`;
+    return this.http.get<ApiResponse>(url);
   }
 
-  getTapRatedMovies(): Observable<any> {
-    let url = `${this.baseUrl}/movie/top_rated?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get(url);
+  getTopRatedMovies(): Observable<ApiResponse> {
+    const url = `${this.baseUrl}/movie/top_rated?language=en-US&page=1&api_key=${this.apiKey}`;
+    return this.http.get<ApiResponse>(url);
   }
 
-  getUpComingMovies(): Observable<any> {
-    let url = `${this.baseUrl}/movie/upcoming?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get(url);
+  getUpcomingMovies(): Observable<ApiResponse> {
+    const url = `${this.baseUrl}/movie/upcoming?language=en-US&page=1&api_key=${this.apiKey}`;
+    return this.http.get<ApiResponse>(url);
   }
 
-  getMovieDetails(movieId: number): Observable<any> {
-    let url = `${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}`;
-    return this.http.get(url);
+  getMovieDetails(movieId: number): Observable<Movies> {
+    const url = `${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}`;
+    return this.http.get<Movies>(url);
   }
 
-  searchMovies(query: string): Observable<any> {
-    let url = `${this.baseUrl}/search/movie?language=en-US&query=${query}&api_key=${this.apiKey}`;
-    return this.http.get(url);
+  searchMovies(query: string): Observable<ApiResponse> {
+    const url = `${this.baseUrl}/search/movie?language=en-US&query=${query}&api_key=${this.apiKey}`;
+    return this.http.get<ApiResponse>(url);
   }
 }
