@@ -5,6 +5,8 @@ import { HeaderComponent } from '../layouts/header/header.component';
 import { SearchBarComponent } from '../layouts/search-bar/search-bar.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { TabbarComponent } from '../layouts/tabbar/tabbar.component';
+import { NoResultComponent } from './no-result/no-result.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-search-page',
@@ -16,6 +18,8 @@ import { TabbarComponent } from '../layouts/tabbar/tabbar.component';
     SearchBarComponent,
     SearchResultsComponent,
     TabbarComponent,
+    NoResultComponent,
+    CommonModule,
   ],
 })
 export class SearchPageComponent implements OnInit {
