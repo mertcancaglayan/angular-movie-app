@@ -1,4 +1,7 @@
 <div class="slide">
-  <img [src]="getPosterUrl(movie.poster_path)" alt="poster img" />
+  <a [routerLink]="['/single-movie']" [state]="{ movieId: movie.id }">
+    <img [src]="getPosterUrl(movie.poster_path)" alt="poster img" />
+  </a>
+
   <span class="movie-rank">{{ listNumber }}</span>
 </div>

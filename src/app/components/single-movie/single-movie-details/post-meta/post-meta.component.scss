@@ -1,0 +1,65 @@
+.post-meta {
+  margin-top: 20px;
+  display: flex;
+  color: #ececec;
+  width: 327px;
+  justify-content: center;
+  align-items: center;
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+    height: 18px;
+    width: 18px;
+    svg {
+      path {
+        stroke: #92929d;
+      }
+    }
+  }
+
+  .genres {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #92929d;
+  }
+
+  .release-year {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #92929d;
+  }
+
+  .movie-length {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #92929d;
+  }
+
+  .movie-length::after,
+  .release-year::after {
+    content: "";
+    height: 18px;
+    width: 1px;
+    margin: 0 10px;
+    background-color: #92929d;
+  }
+}
