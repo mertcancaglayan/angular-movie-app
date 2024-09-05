@@ -1,21 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../layouts/header/header.component';
 import { RateScreenComponent } from './rate-screen/rate-screen.component';
+import { Router, NavigationEnd } from '@angular/router';
+import { ApiService } from '../../services/api-service.service';
+import { CommonModule } from '@angular/common';
+import { BannerComponent } from './banner/banner.component';
+import { SingleMovieDetailsComponent } from "./single-movie-details/single-movie-details.component";
 
 @Component({
   selector: 'app-single-movie',
   standalone: true,
-  imports: [HeaderComponent, RateScreenComponent],
+  imports: [
+    HeaderComponent,
+    RateScreenComponent,
+    CommonModule,
+    BannerComponent,
+    SingleMovieDetailsComponent
+],
   templateUrl: './single-movie.component.html',
-  styleUrl: './single-movie.component.scss',
+  styleUrls: ['./single-movie.component.scss'],
 })
-export class SingleMovieComponent {
+export class SingleMovieComponent implements OnInit {
   title: string = 'Detail';
+  movieId: any;
+  movie: any;
+  error: boolean = false;
 
-  displayOverlay(): void {
-    const overlay = document.querySelector('.overlay') as HTMLElement;
-    if (overlay) {
-      overlay.style.display = 'flex';
-    }
+  constructor(private router: Router, private apiService: ApiService) {
+    const navigation = this.router.getCurrentNavigation();
+    this.movieId = navigation?.extras?.state?.['movieId'];
+  }
+
+  ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const navigation = this.router.getCurrentNavigation();
+        this.movieId = navigation?.extras?.state?.['movieId'];
+      }
+    });
+    this.fetchMovieDetails(this.movieId);
+  }
+
+  fetchMovieDetails(id: number): void {
+    this.apiService.getMovieDetails(id).subscribe(
+      (response) => {
+        this.movie = response;
+        this.error = false;
+      },
+      (error) => {
+        console.error('Error fetching movies:', error);
+        this.error = true;
+      }
+    );
+  }
+
+  navigateToArticle(movie: any): void {
+    this.router.navigate(['/single-movie'], { state: { movie } });
   }
 }

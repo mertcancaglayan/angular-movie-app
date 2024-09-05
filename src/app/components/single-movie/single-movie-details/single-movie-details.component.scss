@@ -1,0 +1,217 @@
+.single-movie-details {
+  margin-top: -110px;
+
+  .title-area {
+    display: flex;
+    flex: row;
+    align-items: end;
+    width: 327px;
+    justify-content: space-between;
+
+    .movie-poster {
+      width: 100px;
+      overflow: hidden;
+      z-index: 99;
+      img {
+        width: 100%;
+        border-radius: 16px;
+      }
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      width: 200px;
+
+      h2 {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 27px;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .movie-content-container {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0 0;
+    width: 327px;
+
+    .content-list {
+      display: flex;
+      flex-direction: column;
+
+      .tabs-container {
+        position: relative;
+        height: 50px;
+        ul {
+          list-style: none;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 33%;
+            h4 {
+              font-family: "Poppins";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 21px;
+              display: flex;
+              align-items: center;
+              text-align: center;
+              color: #ffffff;
+            }
+          }
+        }
+        .line {
+          display: flex;
+          justify-content: start;
+          position: absolute;
+          top: 30px;
+          height: 4px;
+          background-color: #3a3f47;
+          width: 33%;
+          border-radius: 5px;
+          transition: 0.3s ease-in-out;
+        }
+
+        .line.about {
+          left: 0;
+        }
+        .line.reviews {
+          left: 33%;
+        }
+        .line.cast {
+          left: 66%;
+        }
+      }
+
+      article.content {
+        height: auto;
+        width: 327px;
+        p {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 18px;
+          display: flex;
+          align-items: center;
+          color: #ffffff;
+        }
+      }
+
+      article.reviews {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        width: 327px;
+        gap: 20px;
+
+        .review {
+          display: flex;
+          align-items: start;
+          justify-content: space-between;
+          width: 100%;
+
+          .user {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            .user-image {
+              width: 50px;
+              max-width: 50px;
+              min-width: 50px;
+              aspect-ratio: 1;
+              img {
+                width: 100%;
+                border-radius: 50%;
+              }
+            }
+
+            .user-rating p {
+              font-family: "Poppins";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 12px;
+              line-height: 18px;
+              display: flex;
+              align-items: center;
+              text-align: center;
+              color: #0296e5;
+            }
+          }
+
+          .review-content {
+            margin-left: 15px;
+
+            h5.user-name {
+              font-family: "Poppins";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 12px;
+              line-height: 18px;
+              display: flex;
+              align-items: center;
+              color: #ffffff;
+            }
+            p.review-text {
+              margin: 5px 0 0;
+              font-family: "Poppins";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 18px;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+
+      article.cast {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 327px;
+        gap: 20px;
+
+        .cast-member {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          .cast-member-image {
+            width: 120px;
+            height: 120px;
+            img {
+              width: 100%;
+              border-radius: 50%;
+            }
+          }
+
+          .cast-member-name {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 18px;
+            text-align: center;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}

@@ -10,11 +10,17 @@
     class="card-img-container"
     *ngIf="showElement === 'homePageCard' || showElement === 'searchCard'"
   >
-    <img [src]="getPosterUrl(movie.poster_path)" alt="" />
+    <a [routerLink]="['/single-movie']" [state]="{ movieId: movie.id }">
+      <img [src]="getPosterUrl(movie.poster_path)" alt="" />
+    </a>
   </div>
   <div class="card-movie-content" *ngIf="showElement === 'searchCard'">
     <div class="movie-title">
-      <h3>{{ movie.title }}</h3>
+      <h3>
+        <a [routerLink]="['/single-movie']" [state]="{ movieId: movie.id }">
+          {{ movie.title }}
+        </a>
+      </h3>
     </div>
     <div class="card-movie-details">
       <div class="rating">

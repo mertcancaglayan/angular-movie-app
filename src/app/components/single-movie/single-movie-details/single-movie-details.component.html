@@ -1,0 +1,144 @@
+<section class="single-movie-details">
+  <div class="title-area">
+    <div class="movie-poster">
+      <img [src]="getPosterUrl(movie.poster_path)" alt="movie-poster" />
+    </div>
+    <div class="title">
+      <h2>{{ movie.title }}</h2>
+    </div>
+  </div>
+
+  <app-post-meta [movie]="movie"></app-post-meta>
+  
+  <div class="movie-content-container">
+    <div class="content-list">
+      <div class="tabs-container">
+        <ul class="tabs">
+          <li class="tab-item active" (click)="onDetailSelect('about')">
+            <h4>About Movie</h4>
+          </li>
+          <li class="tab-item" (click)="onDetailSelect('reviews')">
+            <h4>Reviews</h4>
+          </li>
+          <li class="tab-item" (click)="onDetailSelect('cast')">
+            <h4>Cast</h4>
+          </li>
+        </ul>
+        <div class="line" [ngClass]="detailSection"></div>
+      </div>
+
+      <article *ngIf="detailSection === 'about'" class="content">
+        <p>About Movie: {{ movie.overview }}</p>
+      </article>
+      <article *ngIf="detailSection === 'reviews'" class="reviews">
+        <div class="review">
+          <div class="user">
+            <div class="user-image">
+              <img
+                src="../../../assets/images/placeholder-user-profile.jpg"
+                alt=""
+              />
+            </div>
+            <div class="user-rating"><p>6.3</p></div>
+          </div>
+          <div class="review-content">
+            <h5 class="user-name">Mert Can Çağlayan</h5>
+            <p class="review-text">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae,
+              voluptates iusto. Id ea, maiores doloribus nobis sed nesciunt odit
+              provident excepturi consequatur cumque dolorum molestias nostrum
+              exercitationem at. Excepturi, dolore.
+            </p>
+          </div>
+        </div>
+        <div class="review">
+          <div class="user">
+            <div class="user-image">
+              <img
+                src="../../../assets/images/placeholder-user-profile.jpg"
+                alt=""
+              />
+            </div>
+            <div class="user-rating"><p>6.3</p></div>
+          </div>
+          <div class="review-content">
+            <h5 class="user-name">Mert Can Çağlayan</h5>
+            <p class="review-text">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae,
+              voluptates iusto. Id ea, maiores doloribus nobis sed nesciunt odit
+              provident excepturi consequatur cumque dolorum molestias nostrum
+              exercitationem at. Excepturi, dolore.
+            </p>
+          </div>
+        </div>
+        <div class="review">
+          <div class="user">
+            <div class="user-image">
+              <img
+                src="../../../assets/images/placeholder-user-profile.jpg"
+                alt=""
+              />
+            </div>
+            <div class="user-rating"><p>6.3</p></div>
+          </div>
+          <div class="review-content">
+            <h5 class="user-name">Mert Can Çağlayan</h5>
+            <p class="review-text">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae,
+              voluptates iusto. Id ea, maiores doloribus nobis sed nesciunt odit
+              provident excepturi consequatur cumque dolorum molestias nostrum
+              exercitationem at. Excepturi, dolore.
+            </p>
+          </div>
+        </div>
+      </article>
+      <article *ngIf="detailSection === 'cast'" class="cast">
+        <div class="cast-member">
+          <div class="cast-member-image">
+            <img
+              src="../../../assets/images/placeholder-user-profile.jpg"
+              alt=""
+            />
+          </div>
+          <h5 class="cast-member-name">John Doe</h5>
+        </div>
+        <div class="cast-member">
+          <div class="cast-member-image">
+            <img
+              src="../../../assets/images/placeholder-user-profile.jpg"
+              alt=""
+            />
+          </div>
+          <h5 class="cast-member-name">John Doe</h5>
+        </div>
+        <div class="cast-member">
+          <div class="cast-member-image">
+            <img
+              src="../../../assets/images/placeholder-user-profile.jpg"
+              alt=""
+            />
+          </div>
+          <h5 class="cast-member-name">John Doe</h5>
+        </div>
+        <div class="cast-member">
+          <div class="cast-member-image">
+            <img
+              src="../../../assets/images/placeholder-user-profile.jpg"
+              alt=""
+            />
+          </div>
+          <h5 class="cast-member-name">John Doe</h5>
+        </div>
+        <div class="cast-member">
+          <div class="cast-member-image">
+            <img
+              src="../../../assets/images/placeholder-user-profile.jpg"
+              alt=""
+            />
+          </div>
+          <h5 class="cast-member-name">John Doe</h5>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
