@@ -15,4 +15,17 @@
     line-height: 20px;
     color: #ececec;
   }
+
+  .icon {
+    width: 15px;
+    aspect-ratio: 1;
+  }
+
+  .save-icon {
+    svg {
+      path {
+        fill: white;
+      }
+    }
+  }
 }
