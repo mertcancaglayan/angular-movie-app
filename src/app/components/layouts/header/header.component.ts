@@ -1,28 +1,36 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   @Input() title: string = '';
   @Input() movie: number | null = null;
 
-  saveToFav() {
-    if (this.movie) {
+  constructor(private location: Location) {}
+
+  saveToFav(movie: any) {
+    if (movie) {
       let favMovies = JSON.parse(localStorage.getItem('fav-movies') || '[]');
 
-      if (!favMovies.includes(this.movie)) {
-        favMovies.push(this.movie);
+      const isMovieInFav = favMovies.some(
+        (favMovie: any) => favMovie.id === movie.id
+      );
+
+      if (!isMovieInFav) {
+        favMovies.push(movie);
         localStorage.setItem('fav-movies', JSON.stringify(favMovies));
-        console.log('Film favorilere eklendi:', this.movie);
-      } else {
-        console.log('Film zaten favorilerde.');
       }
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

@@ -1,5 +1,5 @@
 <header class="header-container">
-  <div class="back-icon icon">
+  <div class="back-icon icon" (click)="goBack()">
     <span>
       <svg
         width="36"
@@ -43,7 +43,11 @@
       </svg>
     </span>
   </div>
-  <div *ngIf="title === 'Detail'" class="save-icon icon" (click) = "saveToFav()">
+  <div
+    *ngIf="title === 'Detail'"
+    class="save-icon icon"
+    (click)="saveToFav(movie)"
+  >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
       <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
       <path

@@ -1,9 +1,11 @@
 <div class="page-padding">
   <app-header [title]="title"></app-header>
-
-
-  
-  <app-no-watch-list></app-no-watch-list>
-
+  <app-watch-list-items
+    *ngIf="favMovies"
+    [movies]="favMovies"
+  ></app-watch-list-items>
+  <app-no-watch-list
+    *ngIf="!favMovies || favMovies.length === 0"
+  ></app-no-watch-list>
   <app-tabbar></app-tabbar>
 </div>
