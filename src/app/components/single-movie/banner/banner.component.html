@@ -1,9 +1,15 @@
 <div class="banner">
   <img
-    *ngIf="movie?.backdrop_path"
+    *ngIf="movie?.backdrop_path; else placeholder"
     [src]="getBackgroundImgUrl(movie.backdrop_path)"
     alt="movie-background-img"
   />
+  <ng-template #placeholder>
+    <img
+      src="../../../../assets/images/banner-placeholder.jpg"
+      alt="placeholder-img"
+    />
+  </ng-template>
   <div class="rating banner-rating">
     <div class="star-icon icon-container" (click)="displayOverlay()">
       <svg
