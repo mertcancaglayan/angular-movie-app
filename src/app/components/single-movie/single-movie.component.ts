@@ -5,7 +5,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { ApiService } from '../../services/api-service.service';
 import { CommonModule } from '@angular/common';
 import { BannerComponent } from './banner/banner.component';
-import { SingleMovieDetailsComponent } from "./single-movie-details/single-movie-details.component";
+import { SingleMovieDetailsComponent } from './single-movie-details/single-movie-details.component';
 
 @Component({
   selector: 'app-single-movie',
@@ -15,8 +15,8 @@ import { SingleMovieDetailsComponent } from "./single-movie-details/single-movie
     RateScreenComponent,
     CommonModule,
     BannerComponent,
-    SingleMovieDetailsComponent
-],
+    SingleMovieDetailsComponent,
+  ],
   templateUrl: './single-movie.component.html',
   styleUrls: ['./single-movie.component.scss'],
 })
@@ -25,6 +25,7 @@ export class SingleMovieComponent implements OnInit {
   movieId: any;
   movie: any;
   error: boolean = false;
+  isMovieInFav: boolean = false;
 
   constructor(private router: Router, private apiService: ApiService) {
     const navigation = this.router.getCurrentNavigation();
@@ -56,5 +57,15 @@ export class SingleMovieComponent implements OnInit {
 
   navigateToArticle(movie: any): void {
     this.router.navigate(['/single-movie'], { state: { movie } });
+  }
+
+  checkIfMovieInFav(): boolean {
+    if (this.movie) {
+      let favMovies = JSON.parse(localStorage.getItem('fav-movies') || '[]');
+      this.isMovieInFav = favMovies.some(
+        (favMovie: any) => favMovie.id === this.movie.id
+      );
+    }
+    return this.isMovieInFav;
   }
 }

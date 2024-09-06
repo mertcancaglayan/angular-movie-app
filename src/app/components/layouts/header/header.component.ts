@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 
@@ -11,7 +11,8 @@ import { Location } from '@angular/common';
 })
 export class HeaderComponent {
   @Input() title: string = '';
-  @Input() movie: number | null = null;
+  @Input() movie: any | null = null;
+  @Input() isMovieInFav: boolean = false;
 
   constructor(private location: Location) {}
 
@@ -26,6 +27,13 @@ export class HeaderComponent {
       if (!isMovieInFav) {
         favMovies.push(movie);
         localStorage.setItem('fav-movies', JSON.stringify(favMovies));
+        this.isMovieInFav = true;
+      } else {
+        favMovies = favMovies.filter(
+          (favMovie: any) => favMovie.id !== movie.id
+        );
+        localStorage.setItem('fav-movies', JSON.stringify(favMovies));
+        this.isMovieInFav = false;
       }
     }
   }
