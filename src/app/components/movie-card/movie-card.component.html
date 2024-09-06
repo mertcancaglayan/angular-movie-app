@@ -11,7 +11,17 @@
     *ngIf="showElement === 'homePageCard' || showElement === 'searchCard'"
   >
     <a [routerLink]="['/single-movie']" [state]="{ movieId: movie.id }">
-      <img [src]="getPosterUrl(movie.poster_path)" alt="" />
+      <img
+        *ngIf="movie?.poster_path; else placeholder"
+        [src]="getPosterUrl(movie.poster_path)"
+        alt="movie-poster-img"
+      />
+      <ng-template #placeholder>
+        <img
+          src="../../../assets/images/poster_placeholder.jpg"
+          alt="placeholder-img"
+        />
+      </ng-template>
     </a>
   </div>
   <div class="card-movie-content" *ngIf="showElement === 'searchCard'">
