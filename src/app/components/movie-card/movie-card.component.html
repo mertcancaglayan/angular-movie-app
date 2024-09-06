@@ -10,25 +10,22 @@
     class="card-img-container"
     *ngIf="showElement === 'homePageCard' || showElement === 'searchCard'"
   >
-    <a [routerLink]="['/single-movie']" [state]="{ movieId: movie.id }">
+    <a [routerLink]="['/single-movie']" [state]="{ movieId: movie?.id }">
       <img
-        *ngIf="movie?.poster_path; else placeholder"
-        [src]="getPosterUrl(movie.poster_path)"
+        [src]="
+          movie?.poster_path
+            ? 'https://image.tmdb.org/t/p/original/' + movie?.poster_path
+            : '../../../assets/images/poster_placeholder.jpg'
+        "
         alt="movie-poster-img"
       />
-      <ng-template #placeholder>
-        <img
-          src="../../../assets/images/poster_placeholder.jpg"
-          alt="placeholder-img"
-        />
-      </ng-template>
     </a>
   </div>
   <div class="card-movie-content" *ngIf="showElement === 'searchCard'">
     <div class="movie-title">
       <h3>
-        <a [routerLink]="['/single-movie']" [state]="{ movieId: movie.id }">
-          {{ movie.title }}
+        <a [routerLink]="['/single-movie']" [state]="{ movieId: movie?.id }">
+          {{ movie?.title }}
         </a>
       </h3>
     </div>
@@ -50,7 +47,7 @@
             />
           </svg>
         </div>
-        <p class="rating-score">{{ movie.vote_average }}</p>
+        <p class="rating-score">{{ movieRating }}</p>
       </div>
       <div class="genres">
         <div class="ticket-icon icon-container">
@@ -75,7 +72,10 @@
             />
           </svg>
         </div>
-        <p>Action</p>
+        <p *ngIf="genreType === 'genre_ids'">{{ matchGenre }}</p>
+        <p *ngIf="genreType === 'genres'">
+          {{ movie ? movie.genres[0].name : "Unkown" }}
+        </p>
       </div>
       <div class="release-year">
         <div class="calendar-icon icon-container">
@@ -112,7 +112,9 @@
             />
           </svg>
         </div>
-        <p>2019</p>
+        <p *ngIf="movie?.release_date">
+          {{ getYearFromDate(movie?.release_date) }}
+        </p>
       </div>
       <div class="movie-length">
         <div class="clock-icon icon-container">
@@ -137,7 +139,7 @@
             />
           </svg>
         </div>
-        <p>139 minutes</p>
+        <p>{{ movie?.runtime }}</p>
       </div>
     </div>
   </div>

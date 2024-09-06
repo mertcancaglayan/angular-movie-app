@@ -4,6 +4,7 @@ import { TabbarComponent } from '../layouts/tabbar/tabbar.component';
 import { NoWatchListComponent } from './no-watch-list/no-watch-list.component';
 import { WatchListItemsComponent } from './watch-list-items/watch-list-items.component';
 import { CommonModule } from '@angular/common';
+import { Movie } from '../../models/movie.model';
 
 @Component({
   selector: 'app-watch-list',
@@ -20,8 +21,7 @@ import { CommonModule } from '@angular/common';
 })
 export class WatchListComponent implements OnInit {
   title: string = 'Watch list';
-
-  favMovies: any;
+  favMovies: Movie[] = [];
 
   ngOnInit(): void {
     this.favMovies = JSON.parse(localStorage.getItem('fav-movies') || '[]');

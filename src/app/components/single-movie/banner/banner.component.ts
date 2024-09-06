@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Movie } from '../../../models/movie.model';
 
 @Component({
   selector: 'app-banner',
@@ -9,14 +10,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './banner.component.scss',
 })
 export class BannerComponent {
-  @Input() movie: any;
+  @Input() movie: Movie | undefined;
 
   getBackgroundImgUrl(backdropPath: string): string {
     return `https://image.tmdb.org/t/p/original/${backdropPath}`;
-  }
-
-  getMovieRating(num: number):number {
-    return Math.round(num * 10) / 10;
   }
 
   displayOverlay(): void {
@@ -24,5 +21,13 @@ export class BannerComponent {
     if (overlay) {
       overlay.style.display = 'flex';
     }
+  }
+
+  get movieRating(): number | undefined {
+    const rating = this.movie?.vote_average;
+    if (rating !== undefined) {
+      return Math.round(rating * 10) / 10;
+    }
+    return undefined;
   }
 }

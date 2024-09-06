@@ -1,15 +1,13 @@
 <div class="banner">
   <img
-    *ngIf="movie?.backdrop_path; else placeholder"
-    [src]="getBackgroundImgUrl(movie.backdrop_path)"
+    [src]="
+      movie?.backdrop_path
+        ? 'https://image.tmdb.org/t/p/original/' + movie?.backdrop_path
+        : '../../../assets/images/poster_placeholder.jpg'
+    "
     alt="movie-background-img"
   />
-  <ng-template #placeholder>
-    <img
-      src="../../../../assets/images/banner-placeholder.jpg"
-      alt="placeholder-img"
-    />
-  </ng-template>
+
   <div class="rating banner-rating">
     <div class="star-icon icon-container" (click)="displayOverlay()">
       <svg
@@ -28,8 +26,6 @@
       </svg>
     </div>
 
-    <p *ngIf="movie?.vote_average" class="rating-score">
-      {{ getMovieRating(movie.vote_average) }}
-    </p>
+    <p class="rating-score">{{ movieRating }}</p>
   </div>
 </div>

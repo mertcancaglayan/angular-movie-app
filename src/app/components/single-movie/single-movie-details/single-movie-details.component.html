@@ -1,15 +1,22 @@
 <section class="single-movie-details">
   <div class="title-area">
     <div class="movie-poster">
-      <img [src]="getPosterUrl(movie.poster_path)" alt="movie-poster" />
+      <img
+        [src]="
+          movie?.poster_path
+            ? 'https://image.tmdb.org/t/p/original/' + movie?.poster_path
+            : '../../../assets/images/poster_placeholder.jpg'
+        "
+        alt="movie-poster-img"
+      />
     </div>
     <div class="title">
-      <h2>{{ movie.title }}</h2>
+      <h2>{{ movie?.title || "No Title" }}</h2>
     </div>
   </div>
 
   <app-post-meta [movie]="movie"></app-post-meta>
-  
+
   <div class="movie-content-container">
     <div class="content-list">
       <div class="tabs-container">
@@ -28,7 +35,13 @@
       </div>
 
       <article *ngIf="detailSection === 'about'" class="content">
-        <p>About Movie: {{ movie.overview }}</p>
+        <p>
+          About Movie:
+          {{
+            movie?.overview ||
+              "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero modi beatae pariatur sequi sed alias suscipit magni quos deleniti. Assumenda ratione libero est saepe, aliquam sed! Voluptates aspernatur debitis adipisci."
+          }}
+        </p>
       </article>
       <article *ngIf="detailSection === 'reviews'" class="reviews">
         <div class="review">

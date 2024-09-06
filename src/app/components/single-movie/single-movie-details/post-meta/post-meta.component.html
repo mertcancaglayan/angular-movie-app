@@ -34,7 +34,9 @@
         />
       </svg>
     </div>
-    <p>{{ getYearFromDate(movie.release_date) }}</p>
+    <p *ngIf="movie?.release_date">
+      {{ getYearFromDate(movie?.release_date) }}
+    </p>
   </div>
   <div class="movie-length">
     <div class="clock-icon icon-container">
@@ -59,7 +61,7 @@
         />
       </svg>
     </div>
-    <p>{{ movie.runtime }} minutes</p>
+    <p>{{ movie ? movie.runtime : "123" }} minutes</p>
   </div>
   <div class="genres">
     <div class="ticket-icon icon-container">
@@ -84,6 +86,6 @@
         />
       </svg>
     </div>
-    <p>{{ movie.genres[0].name }}</p>
+    <p>{{ movie ? movie.genres[0].name : "Unkown" }}</p>
   </div>
 </div>

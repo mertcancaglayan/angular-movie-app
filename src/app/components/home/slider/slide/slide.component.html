@@ -1,6 +1,13 @@
 <div class="slide">
-  <a [routerLink]="['/single-movie']" [state]="{ movieId: movie.id }">
-    <img [src]="getPosterUrl(movie.poster_path)" alt="poster img" />
+  <a [routerLink]="['/single-movie']" [state]="{ movieId: movie?.id }">
+    <img
+      [src]="
+        movie?.poster_path
+          ? 'https://image.tmdb.org/t/p/original/' + movie?.poster_path
+          : '../../../assets/images/poster_placeholder.jpg'
+      "
+      alt="movie-poster-img"
+    />
   </a>
 
   <span class="movie-rank">{{ listNumber }}</span>
