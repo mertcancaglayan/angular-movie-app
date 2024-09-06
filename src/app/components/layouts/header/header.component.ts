@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
+import { Movie } from '../../../models/movie.model';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class HeaderComponent {
   @Input() title: string = '';
-  @Input() movie: any | null = null;
+  @Input() movie: Movie | undefined;
   @Input() isMovieInFav: boolean = false;
 
   constructor(private location: Location) {}

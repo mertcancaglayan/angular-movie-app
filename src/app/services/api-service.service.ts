@@ -1,16 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-interface Movies {
-  id: number;
-  title: string;
-  poster_path: string;
-}
-
-interface ApiResponse {
-  results: Movies[];
-}
+import { Movie } from '../models/movie.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,33 +12,33 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getPopularMovies(): Observable<ApiResponse> {
+  getPopularMovies(): Observable<{ results: Movie[] }> {
     const url = `${this.baseUrl}/movie/popular?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get<ApiResponse>(url);
+    return this.http.get<{ results: Movie[] }>(url);
   }
 
-  getNowPlayingMovies(): Observable<ApiResponse> {
+  getNowPlayingMovies(): Observable<{ results: Movie[] }> {
     const url = `${this.baseUrl}/movie/now_playing?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get<ApiResponse>(url);
+    return this.http.get<{ results: Movie[] }>(url);
   }
 
-  getTopRatedMovies(): Observable<ApiResponse> {
+  getTopRatedMovies(): Observable<{ results: Movie[] }> {
     const url = `${this.baseUrl}/movie/top_rated?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get<ApiResponse>(url);
+    return this.http.get<{ results: Movie[] }>(url);
   }
 
-  getUpcomingMovies(): Observable<ApiResponse> {
+  getUpcomingMovies(): Observable<{ results: Movie[] }> {
     const url = `${this.baseUrl}/movie/upcoming?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get<ApiResponse>(url);
+    return this.http.get<{ results: Movie[] }>(url);
   }
 
-  getMovieDetails(movieId: number): Observable<Movies> {
+  getMovieDetails(movieId: number): Observable<Movie> {
     const url = `${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}`;
-    return this.http.get<Movies>(url);
+    return this.http.get<Movie>(url);
   }
 
-  searchMovies(query: string): Observable<ApiResponse> {
+  searchMovies(query: string): Observable<{ results: Movie[] }> {
     const url = `${this.baseUrl}/search/movie?language=en-US&query=${query}&api_key=${this.apiKey}`;
-    return this.http.get<ApiResponse>(url);
+    return this.http.get<{ results: Movie[] }>(url);
   }
 }

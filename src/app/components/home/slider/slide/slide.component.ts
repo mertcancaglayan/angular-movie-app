@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
+import { Movie } from '../../../../models/movie.model';
 
 @Component({
   selector: 'app-slide',
@@ -10,8 +10,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './slide.component.scss',
 })
 export class SlideComponent {
-  @Input() movie: any;
-  @Input() listNumber: any;
+  @Input() movie: Movie | undefined;
+  @Input() listNumber: number = 0;
 
   getPosterUrl(posterPath: string): string {
     return `https://image.tmdb.org/t/p/original/${posterPath}`;

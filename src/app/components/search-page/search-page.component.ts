@@ -7,6 +7,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { TabbarComponent } from '../layouts/tabbar/tabbar.component';
 import { NoResultComponent } from './no-result/no-result.component';
 import { CommonModule } from '@angular/common';
+import { Movie } from '../../models/movie.model';
 
 @Component({
   selector: 'app-search-page',
@@ -26,7 +27,7 @@ export class SearchPageComponent implements OnInit {
   title: string = 'Search';
   error: boolean = false;
   searchedQuery: string = '';
-  movies: any;
+  movies: Movie[] = [];
 
   constructor(
     private apiService: ApiService,

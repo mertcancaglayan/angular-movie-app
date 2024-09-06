@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MovieCardComponent } from '../../movie-card/movie-card.component';
 import { CommonModule } from '@angular/common';
+import { Movie } from '../../../models/movie.model';
 
 @Component({
   selector: 'app-search-results',
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './search-results.component.scss',
 })
 export class SearchResultsComponent {
-  @Input() movies: any;
-  searchCard: string = "searchCard"
-
+  @Input() movies: Movie[] = [];
+  searchCard: string = 'searchCard';
+  genreType: string = 'genre_ids';
 }

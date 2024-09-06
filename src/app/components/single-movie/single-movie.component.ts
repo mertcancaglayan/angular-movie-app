@@ -6,6 +6,7 @@ import { ApiService } from '../../services/api-service.service';
 import { CommonModule } from '@angular/common';
 import { BannerComponent } from './banner/banner.component';
 import { SingleMovieDetailsComponent } from './single-movie-details/single-movie-details.component';
+import { Movie } from '../../models/movie.model';
 
 @Component({
   selector: 'app-single-movie',
@@ -22,8 +23,8 @@ import { SingleMovieDetailsComponent } from './single-movie-details/single-movie
 })
 export class SingleMovieComponent implements OnInit {
   title: string = 'Detail';
-  movieId: any;
-  movie: any;
+  movieId: number;
+  movie: Movie | undefined;
   error: boolean = false;
   isMovieInFav: boolean = false;
 
@@ -55,7 +56,7 @@ export class SingleMovieComponent implements OnInit {
     );
   }
 
-  navigateToArticle(movie: any): void {
+  navigateToArticle(movie: Movie): void {
     this.router.navigate(['/single-movie'], { state: { movie } });
   }
 
@@ -63,7 +64,7 @@ export class SingleMovieComponent implements OnInit {
     if (this.movie) {
       let favMovies = JSON.parse(localStorage.getItem('fav-movies') || '[]');
       this.isMovieInFav = favMovies.some(
-        (favMovie: any) => favMovie.id === this.movie.id
+        (favMovie: Movie) => favMovie.id === this.movie?.id
       );
     }
     return this.isMovieInFav;

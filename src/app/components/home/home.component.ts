@@ -4,6 +4,7 @@ import { SliderComponent } from './slider/slider.component';
 import { SearchBarComponent } from '../layouts/search-bar/search-bar.component';
 import { TabbarComponent } from '../layouts/tabbar/tabbar.component';
 import { ApiService } from '../../services/api-service.service';
+import { Movie } from '../../models/movie.model';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ import { ApiService } from '../../services/api-service.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  popularMovies: any[] = [];
+  popularMovies: Movie[] = [];
 
   constructor(private apiService: ApiService) {}
 

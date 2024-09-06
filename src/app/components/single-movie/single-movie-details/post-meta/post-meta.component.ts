@@ -1,17 +1,21 @@
 import { Component, Input } from '@angular/core';
+import { Movie } from '../../../../models/movie.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-post-meta',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './post-meta.component.html',
   styleUrl: './post-meta.component.scss',
 })
 export class PostMetaComponent {
-  @Input() movie: any;
+  @Input() movie: Movie | undefined;
 
-  getYearFromDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.getFullYear().toString();
+  getYearFromDate(date: string | undefined): string {
+    if (date) {
+      return new Date(date).getFullYear().toString();
+    }
+    return '1923';
   }
 }
