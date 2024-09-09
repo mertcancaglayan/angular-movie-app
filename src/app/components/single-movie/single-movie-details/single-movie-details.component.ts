@@ -8,7 +8,10 @@ import { Movie } from '../../../models/movie.model';
   standalone: true,
   imports: [CommonModule, PostMetaComponent],
   templateUrl: './single-movie-details.component.html',
-  styleUrl: './single-movie-details.component.scss',
+  styleUrls: [
+    './single-movie-details.component.scss',
+    './single-movie-detalis-responsive.scss',
+  ],
 })
 export class SingleMovieDetailsComponent {
   @Input() movie: Movie | undefined;
