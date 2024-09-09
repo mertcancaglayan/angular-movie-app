@@ -24,3 +24,14 @@
     color: #ffffff;
   }
 }
+
+@media screen and (min-width: 512px) {
+  app-slider {
+    width: 100%;
+  }
+
+  .home-page-title {
+    margin-top: 100px;
+    width: 327px;
+  }
+}

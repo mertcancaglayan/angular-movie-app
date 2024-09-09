@@ -1,4 +1,4 @@
-<div class="search-bar">
+<div class="search-bar" [ngClass]="{ 'tabbar-visible': location === 'tabbar' }">
   <form class="search-form" (submit)="onSearch($event)">
     <input
       type="text"

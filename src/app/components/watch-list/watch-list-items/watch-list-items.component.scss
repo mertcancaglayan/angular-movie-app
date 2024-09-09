@@ -4,3 +4,31 @@
   gap: 20px;
   margin-bottom: 100px;
 }
+
+.title {
+  width: 327px;
+
+  h1 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #ffffff;
+  }
+}
+
+@media screen and (min-width: 512px) {
+  .title {
+    margin: 100px 0 40px;
+  }
+  .watch-lists {
+    width: 100%;
+  }
+  .lists-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}

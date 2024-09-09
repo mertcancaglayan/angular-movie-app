@@ -14,6 +14,29 @@
   border-radius: 0px;
   border-top: 1px solid #0296e5;
 
+  .tabbar-title-icon {
+    display: none;
+    width: 46px;
+    width: 30%;
+    cursor: pointer;
+    &:hover {
+      svg {
+        width: 46px;
+        height: 46px;
+        path {
+          fill: #0296e5;
+        }
+      }
+    }
+    svg {
+      width: 46px;
+      height: 46px;
+      path {
+        fill: rgb(103, 104, 109);
+      }
+    }
+  }
+
   ul {
     display: flex;
     flex-direction: row;
@@ -33,23 +56,64 @@
       align-items: center;
       gap: 2px;
       padding: 10px 20px;
-    }
-
-    li.active {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      padding: 10px 20px;
-      color: #0296e5;
-
-      span {
-        svg {
-          * {
-            stroke: #0296e5;
+      cursor: pointer;
+      &:hover {
+        color: #0296e5;
+        span {
+          svg {
+            * {
+              stroke: #0296e5;
+            }
           }
         }
       }
+
+      &.active {
+        color: #0296e5;
+
+        span {
+          svg {
+            * {
+              stroke: #0296e5;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .navbar-searchbar {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 512px) {
+  .tabbar {
+    justify-content: space-around;
+    width: 100%;
+    top: 0;
+    border-top: none;
+    border-bottom: 1px solid #0296e5;
+
+    .navbar-search-tab {
+      order: 3;
+    }
+
+    .tabbar-title-icon {
+      display: flex;
+    }
+
+    ul {
+      width: 30%;
+      justify-content: center;
+    }
+
+    .navbar-searchbar {
+      display: flex;
+      justify-content: center;
+      min-width: 15%;
+      width: 30%;
+      max-width: 30%;
     }
   }
 }

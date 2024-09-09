@@ -1,10 +1,13 @@
 <section class="search-results">
+  <div class="search-title">
+    <h1>Searched: {{ searchedQuery }}</h1>
+  </div>
   <div class="results-container">
     <app-movie-card
       *ngFor="let movie of movies"
       [movie]="movie"
       [showElement]="searchCard"
-      [genreType] = "genreType"
+      [genreType]="genreType"
     ></app-movie-card>
   </div>
 </section>
