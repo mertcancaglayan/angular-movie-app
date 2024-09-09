@@ -24,6 +24,8 @@ export class WatchListComponent implements OnInit {
   favMovies: Movie[] = [];
 
   ngOnInit(): void {
-    this.favMovies = JSON.parse(localStorage.getItem('fav-movies') || '[]');
+    if (typeof window !== 'undefined' && localStorage) {
+      this.favMovies = JSON.parse(localStorage.getItem('fav-movies') || '[]');
+    }
   }
 }
