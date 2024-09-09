@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Movie } from '../models/movie.model';
 import { environment } from '../../environments/environment';
 
@@ -33,9 +33,17 @@ export class ApiService {
     return this.http.get<{ results: Movie[] }>(url);
   }
 
-  getMovieDetails(movieId: number): Observable<Movie> {
+  getMovieDetails(movieId: number | undefined): Observable<Movie> {
+    if (!movieId) {
+      return throwError('Movie ID is invalid or undefined');
+    }
+
     const url = `${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}`;
-    return this.http.get<Movie>(url);
+    return this.http.get<Movie>(url).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
   }
 
   searchMovies(query: string): Observable<{ results: Movie[] }> {
