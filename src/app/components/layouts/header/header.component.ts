@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { Movie } from '../../../models/movie.model';
@@ -18,7 +18,7 @@ export class HeaderComponent {
   constructor(private location: Location) {}
 
   saveToFav(movie: any) {
-    if (movie) {
+    if (movie && typeof window !== 'undefined' && localStorage) {
       let favMovies = JSON.parse(localStorage.getItem('fav-movies') || '[]');
 
       const isMovieInFav = favMovies.some(
