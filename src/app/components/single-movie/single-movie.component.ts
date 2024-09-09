@@ -23,7 +23,7 @@ import { Movie } from '../../models/movie.model';
 })
 export class SingleMovieComponent implements OnInit {
   title: string = 'Detail';
-  movieId: number = 12;
+  movieId: number;
   movie: Movie | undefined;
   error: boolean = false;
   isMovieInFav: boolean = false;
@@ -31,7 +31,6 @@ export class SingleMovieComponent implements OnInit {
   constructor(private router: Router, private apiService: ApiService) {
     const navigation = this.router.getCurrentNavigation();
     this.movieId = navigation?.extras?.state?.['movieId'];
-    this.fetchMovieDetails(this.movieId);
   }
 
   ngOnInit(): void {
@@ -41,6 +40,17 @@ export class SingleMovieComponent implements OnInit {
         this.movieId = navigation?.extras?.state?.['movieId'];
       }
     });
+    if (this.movieId) {
+      this.apiService.getMovieDetails(this.movieId).subscribe({
+        next: (movie: Movie) => {
+          this.movie = movie;
+          this.error = false;
+        },
+        error: () => {
+          this.error = true;
+        },
+      });
+    }
   }
 
   fetchMovieDetails(id: number): void {

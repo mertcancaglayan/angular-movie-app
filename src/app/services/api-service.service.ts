@@ -33,7 +33,7 @@ export class ApiService {
     return this.http.get<{ results: Movie[] }>(url);
   }
 
-  getMovieDetails(movieId: number | undefined): Observable<Movie> {
+  getMovieDetails(movieId: number): Observable<Movie> {
     if (!movieId) {
       return throwError('Movie ID is invalid or undefined');
     }
