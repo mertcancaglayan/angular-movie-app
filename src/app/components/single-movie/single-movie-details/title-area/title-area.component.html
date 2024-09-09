@@ -1,0 +1,15 @@
+<div class="title-area">
+  <div class="movie-poster">
+    <img
+      [src]="
+        movie?.poster_path
+          ? 'https://image.tmdb.org/t/p/original/' + movie?.poster_path
+          : '../../../assets/images/poster_placeholder.jpg'
+      "
+      alt="movie-poster-img"
+    />
+  </div>
+  <div class="title">
+    <h2>{{ movie?.title || "No Title" }}</h2>
+  </div>
+</div>

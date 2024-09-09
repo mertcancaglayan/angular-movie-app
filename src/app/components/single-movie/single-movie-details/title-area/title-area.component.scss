@@ -1,0 +1,27 @@
+.title-area {
+  display: flex;
+  flex: row;
+  align-items: end;
+  width: 327px;
+  justify-content: space-between;
+
+  .movie-poster {
+    width: 100px;
+    overflow: hidden;
+    z-index: 99;
+    img {
+      width: 100%;
+      border-radius: 16px;
+    }
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    h2 {
+      font-size: 18px;
+      line-height: 27px;
+    }
+  }
+}

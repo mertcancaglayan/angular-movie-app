@@ -1,39 +1,6 @@
 .single-movie-details {
   margin-top: -110px;
 
-  .title-area {
-    display: flex;
-    flex: row;
-    align-items: end;
-    width: 327px;
-    justify-content: space-between;
-
-    .movie-poster {
-      width: 100px;
-      overflow: hidden;
-      z-index: 99;
-      img {
-        width: 100%;
-        border-radius: 16px;
-      }
-    }
-
-    .title {
-      display: flex;
-      align-items: center;
-      width: 200px;
-
-      h2 {
-        font-family: "Poppins";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 27px;
-        color: #ffffff;
-      }
-    }
-  }
-
   .movie-content-container {
     display: flex;
     flex-direction: column;
@@ -59,15 +26,12 @@
             justify-content: center;
             width: 33%;
             h4 {
-              font-family: "Poppins";
-              font-style: normal;
               font-weight: 400;
               font-size: 14px;
               line-height: 21px;
               display: flex;
               align-items: center;
               text-align: center;
-              color: #ffffff;
             }
           }
         }
@@ -98,14 +62,11 @@
         height: auto;
         width: 327px;
         p {
-          font-family: "Poppins";
-          font-style: normal;
           font-weight: 400;
           font-size: 12px;
           line-height: 18px;
           display: flex;
           align-items: center;
-          color: #ffffff;
         }
       }
 
@@ -140,14 +101,8 @@
             }
 
             .user-rating p {
-              font-family: "Poppins";
-              font-style: normal;
-              font-weight: 500;
-              font-size: 12px;
-              line-height: 18px;
               display: flex;
               align-items: center;
-              text-align: center;
               color: #0296e5;
             }
           }
@@ -156,23 +111,12 @@
             margin-left: 15px;
 
             h5.user-name {
-              font-family: "Poppins";
-              font-style: normal;
-              font-weight: 500;
-              font-size: 12px;
-              line-height: 18px;
               display: flex;
               align-items: center;
-              color: #ffffff;
             }
             p.review-text {
               margin: 5px 0 0;
-              font-family: "Poppins";
-              font-style: normal;
               font-weight: 400;
-              font-size: 12px;
-              line-height: 18px;
-              color: #ffffff;
             }
           }
         }
@@ -202,13 +146,9 @@
           }
 
           .cast-member-name {
-            font-family: "Poppins";
-            font-style: normal;
-            font-weight: 500;
             font-size: 12px;
             line-height: 18px;
             text-align: center;
-            color: #ffffff;
           }
         }
       }
