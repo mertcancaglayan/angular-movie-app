@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import {
+  Router,
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancel,
+  NavigationError,
+} from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { CommonModule } from '@angular/common';
@@ -13,20 +19,22 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   title = 'angular-movie-app';
-  isLoading = false;
+  isLoading = true;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        if (event.url === '/') {
-          this.isLoading = true;
-        }
-      } else if (event instanceof NavigationEnd) {
+        this.isLoading = true;
+      } else if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError
+      ) {
         setTimeout(() => {
           this.isLoading = false;
-        }, 200);
+        }, 500);
       }
     });
   }

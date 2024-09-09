@@ -6,7 +6,21 @@
           ? 'https://image.tmdb.org/t/p/original/' + movie?.poster_path
           : '../../../assets/images/poster_placeholder.jpg'
       "
-      alt="movie-poster-img"
+      [alt]="
+        movie?.title ? 'Poster for ' + movie?.title : 'Movie poster placeholder'
+      "
+      [srcset]="
+        movie?.poster_path
+          ? 'https://image.tmdb.org/t/p/w500/' +
+            movie?.poster_path +
+            ' 500w, ' +
+            'https://image.tmdb.org/t/p/w780/' +
+            movie?.poster_path +
+            ' 780w'
+          : '../../../assets/images/poster_placeholder.jpg'
+      "
+      sizes="(max-width: 600px) 100vw, 50vw"
+      loading="lazy"
     />
   </div>
   <div class="title">

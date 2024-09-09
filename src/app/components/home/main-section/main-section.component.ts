@@ -94,10 +94,8 @@ export class MainSectionComponent implements OnInit {
   }
 
   onCategorySelect(category: string): void {
-    this.router.navigate([], {
-      queryParams: { category },
-      queryParamsHandling: 'merge',
-    });
     this.selectedCategory = category;
+    this.fetchMoviesByCategory(this.selectedCategory);
+
   }
 }
