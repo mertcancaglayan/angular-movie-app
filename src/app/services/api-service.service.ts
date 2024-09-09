@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../models/movie.model';
-import { environment } from '../../enviroments/enviroment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   private baseUrl = 'https://api.themoviedb.org/3';
-  private apiKey = environment.apiKey;
+  private apiKey = environment.API_KEY;
 
   constructor(private http: HttpClient) {}
 
