@@ -1,4 +1,11 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  AfterViewInit,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { SlideComponent } from './slide/slide.component';
 import { CommonModule } from '@angular/common';
 import { Movie } from '../../../models/movie.model';
@@ -12,14 +19,18 @@ import { Movie } from '../../../models/movie.model';
 })
 export class SliderComponent implements AfterViewInit {
   @Input() popularMovies: Movie[] = [];
-  slider!: HTMLElement; // Declare slider
+  slider!: HTMLElement;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngAfterViewInit(): void {
-    this.slider = document.querySelector<HTMLElement>('.slider')!;
+    if (isPlatformBrowser(this.platformId)) {
+      this.slider = document.querySelector<HTMLElement>('.slider')!;
+    }
   }
 
   slide(direction: 'next' | 'prev') {
-    if (!this.slider) return; // Ensure slider is available
+    if (!this.slider) return;
 
     const slideWidth = this.slider.clientWidth;
     const maxScrollLeft = this.slider.scrollWidth - this.slider.clientWidth;
