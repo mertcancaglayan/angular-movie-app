@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api-service.service';
 import { CommonModule } from '@angular/common';
 import { MovieCardComponent } from '../../movie-card/movie-card.component';
+import { Movie } from '../../../models/movie.model';
 
 @Component({
   selector: 'app-main-section',
@@ -13,8 +14,9 @@ import { MovieCardComponent } from '../../movie-card/movie-card.component';
 })
 export class MainSectionComponent implements OnInit {
   homePageCard: string = 'homePageCard';
-  movies: any;
+  movies: Movie[] = [];
   error: boolean = false;
+  selectedCategory: string = 'now_playing';
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +27,7 @@ export class MainSectionComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const category = params['category'] || 'now_playing';
+      this.selectedCategory = category;
       this.fetchMoviesByCategory(category);
     });
   }
@@ -95,5 +98,6 @@ export class MainSectionComponent implements OnInit {
       queryParams: { category },
       queryParamsHandling: 'merge',
     });
+    this.selectedCategory = category;
   }
 }

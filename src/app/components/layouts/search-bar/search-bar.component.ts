@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SearchService } from '../../../services/search-service.service';
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class SearchBarComponent {
   searchQuery: string = '';
+  @Input() location: string = 'section';
 
   constructor(private router: Router, private searchService: SearchService) {}
 

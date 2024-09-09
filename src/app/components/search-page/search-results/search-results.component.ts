@@ -12,6 +12,7 @@ import { Movie } from '../../../models/movie.model';
 })
 export class SearchResultsComponent {
   @Input() movies: Movie[] = [];
+  @Input() searchedQuery: string = '';
   searchCard: string = 'searchCard';
   genreType: string = 'genre_ids';
 }

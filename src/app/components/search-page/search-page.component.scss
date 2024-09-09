@@ -31,3 +31,12 @@
     color: #ececec;
   }
 }
+
+@media screen and (min-width: 512px) {
+  app-header {
+    display: none;
+  }
+  app-search-results {
+    width: 100%;
+  }
+}

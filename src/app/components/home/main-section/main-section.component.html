@@ -1,10 +1,30 @@
 <section class="categories-section">
   <div class="category-list">
     <ul>
-      <li (click)="onCategorySelect('now_playing')">Now playing</li>
-      <li (click)="onCategorySelect('upcoming')">Upcoming</li>
-      <li (click)="onCategorySelect('top_rated')">Top rated</li>
-      <li (click)="onCategorySelect('popular')">Popular</li>
+      <li
+        (click)="onCategorySelect('now_playing')"
+        [ngClass]="{ active: selectedCategory === 'now_playing' }"
+      >
+        Now playing
+      </li>
+      <li
+        (click)="onCategorySelect('upcoming')"
+        [ngClass]="{ active: selectedCategory === 'upcoming' }"
+      >
+        Upcoming
+      </li>
+      <li
+        (click)="onCategorySelect('top_rated')"
+        [ngClass]="{ active: selectedCategory === 'top_rated' }"
+      >
+        Top rated
+      </li>
+      <li
+        (click)="onCategorySelect('popular')"
+        [ngClass]="{ active: selectedCategory === 'popular' }"
+      >
+        Popular
+      </li>
     </ul>
   </div>
   <div class="display-movies">

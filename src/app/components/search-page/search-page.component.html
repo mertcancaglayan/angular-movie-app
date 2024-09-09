@@ -6,6 +6,7 @@
   <app-search-results
     *ngIf="movies && movies.length"
     [movies]="movies"
+    [searchedQuery] = "searchedQuery"
   ></app-search-results>
 
   <app-no-result *ngIf="!movies || movies.length === 0"></app-no-result>

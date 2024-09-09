@@ -23,3 +23,22 @@
       0.8px -0.8px 0 #0296e5, -0.8px 0.8px 0 #0296e5, 0.8px 0.8px 0 #0296e5;
   }
 }
+
+@media screen and (min-width: 512px) {
+  .slide {
+    position: relative;
+    left: 10px;
+
+    img {
+      width: 217.5px;
+      height: 315px;
+      border-radius: 16px;
+    }
+
+    .movie-rank {
+      position: absolute;
+      left: -10px;
+      top: 135px;
+    }
+  }
+}
