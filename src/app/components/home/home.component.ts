@@ -19,18 +19,18 @@ import { Movie } from '../../models/movie.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  popularMovies: Movie[] = [];
+  trendingMovies: Movie[] = [];
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.loadPopularMovies();
+    this.loadtrendingMovies();
   }
 
-  loadPopularMovies(): void {
-    this.apiService.getPopularMovies().subscribe({
+  loadtrendingMovies(): void {
+    this.apiService.getTrendingMovies().subscribe({
       next: (response) => {
-        this.popularMovies = response.results.slice(0, 10);
+        this.trendingMovies = response.results.slice(0, 10);
       },
       error: (err) => {
         console.error('API call failed:', err);

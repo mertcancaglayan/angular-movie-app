@@ -18,18 +18,10 @@ export class MainSectionComponent implements OnInit {
   error: boolean = false;
   selectedCategory: string = 'now_playing';
 
-  constructor(
-    private route: ActivatedRoute,
-    private apiService: ApiService,
-    private router: Router
-  ) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      const category = params['category'] || 'now_playing';
-      this.selectedCategory = category;
-      this.fetchMoviesByCategory(category);
-    });
+    this.fetchMoviesByCategory(this.selectedCategory);
   }
 
   fetchMoviesByCategory(category: string): void {
@@ -71,22 +63,18 @@ export class MainSectionComponent implements OnInit {
         );
         break;
       default:
-        this.fetchSearchMovies();
+        this.apiService.getNowPlayingMovies().subscribe(
+          (response) => {
+            this.movies = response.results;
+            this.error = false;
+          },
+          (error) => {
+            console.error('Error fetching now playing movies:', error);
+            this.error = true;
+          }
+        );
         break;
     }
-  }
-
-  fetchSearchMovies(): void {
-    this.apiService.getNowPlayingMovies().subscribe(
-      (response) => {
-        this.movies = response.results;
-        this.error = false;
-      },
-      (error) => {
-        console.error('Error fetching now playing movies:', error);
-        this.error = true;
-      }
-    );
   }
 
   getPosterUrl(posterPath: string): string {
@@ -96,6 +84,5 @@ export class MainSectionComponent implements OnInit {
   onCategorySelect(category: string): void {
     this.selectedCategory = category;
     this.fetchMoviesByCategory(this.selectedCategory);
-
   }
 }

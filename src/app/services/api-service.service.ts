@@ -12,6 +12,11 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+  getTrendingMovies(): Observable<{ results: Movie[] }> {
+    const url = `${this.baseUrl}/trending/movie/week?api_key=${this.apiKey}`;
+    return this.http.get<{ results: Movie[] }>(url);
+  }
+
   getPopularMovies(): Observable<{ results: Movie[] }> {
     const url = `${this.baseUrl}/movie/popular?language=en-US&page=1&api_key=${this.apiKey}`;
     return this.http.get<{ results: Movie[] }>(url);
