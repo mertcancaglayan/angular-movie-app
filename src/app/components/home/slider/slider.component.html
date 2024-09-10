@@ -1,4 +1,4 @@
-<div class="slider-container">
+<div *ngIf="!error" class="slider-container">
   <div class="slider snaps-inline">
     <app-slide
       *ngFor="let movie of popularMovies; let i = index"
@@ -7,6 +7,11 @@
     ></app-slide>
   </div>
 </div>
+
+<div *ngIf="error" class="error-message">
+  <p>Slider Not Found. Please try again!</p>
+</div>
+
 <div class="slide-nav-buttons">
   <button (click)="slide('prev')"><</button>
   <button (click)="slide('next')">></button>

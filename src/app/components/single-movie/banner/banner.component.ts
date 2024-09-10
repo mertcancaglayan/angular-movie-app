@@ -12,10 +12,6 @@ import { Movie } from '../../../models/movie.model';
 export class BannerComponent {
   @Input() movie: Movie | undefined;
 
-  getBackgroundImgUrl(backdropPath: string): string {
-    return `https://image.tmdb.org/t/p/original/${backdropPath}`;
-  }
-
   displayOverlay(): void {
     const overlay = document.querySelector('.overlay') as HTMLElement;
     if (overlay) {

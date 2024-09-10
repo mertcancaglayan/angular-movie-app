@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BannerComponent } from './banner/banner.component';
 import { SingleMovieDetailsComponent } from './single-movie-details/single-movie-details.component';
 import { Movie } from '../../models/movie.model';
+import { TabbarComponent } from "../layouts/tabbar/tabbar.component";
 
 @Component({
   selector: 'app-single-movie',
@@ -17,7 +18,8 @@ import { Movie } from '../../models/movie.model';
     CommonModule,
     BannerComponent,
     SingleMovieDetailsComponent,
-  ],
+    TabbarComponent
+],
   templateUrl: './single-movie.component.html',
   styleUrls: ['./single-movie.component.scss'],
 })

@@ -20,12 +20,18 @@ import { Movie } from '../../../models/movie.model';
 export class SliderComponent implements AfterViewInit {
   @Input() popularMovies: Movie[] = [];
   slider!: HTMLElement;
+  error: boolean = false;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.slider = document.querySelector<HTMLElement>('.slider')!;
+      if (!this.slider) {
+        this.error = true;
+        console.error(this.error);
+        return;
+      }
     }
   }
 

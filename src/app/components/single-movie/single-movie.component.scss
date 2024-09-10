@@ -9,3 +9,9 @@
   gap: 20px;
   position: relative;
 }
+
+@media screen and (min-width: 512px) {
+  app-header {
+    margin-top: 50px;
+  }
+}

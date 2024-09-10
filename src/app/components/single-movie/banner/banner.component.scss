@@ -1,6 +1,5 @@
 .banner {
   position: relative;
-  z-index: 0;
   width: 100vw;
   img {
     width: 100%;
@@ -26,6 +25,7 @@
       align-items: center;
       height: 12px;
       width: 12px;
+      cursor: pointer;
       svg {
         path {
           stroke: #ff8700;
@@ -47,7 +47,6 @@
 @media screen and (min-width: 512px) {
   .banner {
     position: relative;
-    z-index: 0;
     width: 60vw;
     img {
       width: 100%;
