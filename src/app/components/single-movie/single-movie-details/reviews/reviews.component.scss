@@ -24,6 +24,7 @@ article.reviews {
           width: 100%;
           aspect-ratio: 1;
           border-radius: 50%;
+          object-fit: cover;
         }
       }
 
@@ -48,14 +49,16 @@ article.reviews {
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
-        -webkit-line-clamp: 4; // Truncate text after 4 lines
+        line-clamp: 4;
+        -webkit-line-clamp: 4;
         line-height: 1.5;
-        max-height: 6em; // Adjust if needed for 4 lines of text
+        max-height: 6em;
 
         &.expanded {
           display: block;
-          -webkit-line-clamp: unset; // Show all lines when expanded
-          max-height: none; // Remove height constraint when expanded
+          -webkit-line-clamp: unset;
+          line-clamp: unset;
+          max-height: none;
         }
       }
 

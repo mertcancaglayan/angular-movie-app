@@ -1,0 +1,16 @@
+<article class="cast">
+  <div class="cast-member" *ngFor="let member of movieCast">
+    <div class="cast-member-image">
+      <img
+        [src]="
+          member.profile_path
+            ? 'https://image.tmdb.org/t/p/w300/' + member.profile_path
+            : '../../../assets/images/placeholder-user-profile.jpg'
+        "
+        [alt]="member.name ? member.name : 'Placeholder image'"
+      />
+    </div>
+    <h5 class="cast-member-name">{{ member.name }}</h5>
+    <p class="cast-member-character">{{ member.character }}</p>
+  </div>
+</article>

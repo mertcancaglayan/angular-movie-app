@@ -35,53 +35,10 @@
         *ngIf="detailSection === 'reviews'"
       ></app-reviews>
 
-      <article *ngIf="detailSection === 'cast'" class="cast">
-        <div class="cast-member">
-          <div class="cast-member-image">
-            <img
-              src="../../../assets/images/placeholder-user-profile.jpg"
-              alt=""
-            />
-          </div>
-          <h5 class="cast-member-name">John Doe</h5>
-        </div>
-        <div class="cast-member">
-          <div class="cast-member-image">
-            <img
-              src="../../../assets/images/placeholder-user-profile.jpg"
-              alt=""
-            />
-          </div>
-          <h5 class="cast-member-name">John Doe</h5>
-        </div>
-        <div class="cast-member">
-          <div class="cast-member-image">
-            <img
-              src="../../../assets/images/placeholder-user-profile.jpg"
-              alt=""
-            />
-          </div>
-          <h5 class="cast-member-name">John Doe</h5>
-        </div>
-        <div class="cast-member">
-          <div class="cast-member-image">
-            <img
-              src="../../../assets/images/placeholder-user-profile.jpg"
-              alt=""
-            />
-          </div>
-          <h5 class="cast-member-name">John Doe</h5>
-        </div>
-        <div class="cast-member">
-          <div class="cast-member-image">
-            <img
-              src="../../../assets/images/placeholder-user-profile.jpg"
-              alt=""
-            />
-          </div>
-          <h5 class="cast-member-name">John Doe</h5>
-        </div>
-      </article>
+      <app-cast
+        [movieCast]="movieCast"
+        *ngIf="detailSection === 'cast'"
+      ></app-cast>
     </div>
   </div>
 </section>
