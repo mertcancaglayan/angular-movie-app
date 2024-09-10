@@ -59,6 +59,9 @@
         }
       }
 
+      app-reviews {
+        margin: 0 0 35px;
+      }
       article.content {
         height: auto;
         width: 327px;
@@ -68,58 +71,6 @@
           line-height: 18px;
           display: flex;
           align-items: center;
-        }
-      }
-
-      article.reviews {
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        align-items: start;
-        width: 327px;
-        gap: 20px;
-
-        .review {
-          display: flex;
-          align-items: start;
-          justify-content: space-between;
-          width: 100%;
-
-          .user {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            .user-image {
-              width: 50px;
-              max-width: 50px;
-              min-width: 50px;
-              aspect-ratio: 1;
-              img {
-                width: 100%;
-                border-radius: 50%;
-              }
-            }
-
-            .user-rating p {
-              display: flex;
-              align-items: center;
-              color: #0296e5;
-            }
-          }
-
-          .review-content {
-            margin-left: 15px;
-
-            h5.user-name {
-              display: flex;
-              align-items: center;
-            }
-            p.review-text {
-              margin: 5px 0 0;
-              font-weight: 400;
-            }
-          }
         }
       }
 
