@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Movie } from '../models/movie.model';
+import { Movie, Review, CastMember } from '../models/movie.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -10,7 +10,6 @@ import { environment } from '../../environments/environment';
 export class ApiService {
   private baseUrl = environment.baseUrl;
   private apiKey = environment.apiKey;
-
 
   constructor(private http: HttpClient) {}
 
@@ -37,13 +36,26 @@ export class ApiService {
     );
   }
 
-  getMovieReviews(movieId: number): Observable<Movie> {
+  getMovieReviews(movieId: number): Observable<{ results: Review[] }> {
     if (!movieId) {
       return throwError('Movie ID is invalid or undefined');
     }
 
     const url = `${this.baseUrl}/movie/${movieId}/reviews?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get<Movie>(url).pipe(
+    return this.http.get<{ results: Review[] }>(url).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
+  getMovieCast(movieId: number): Observable<{ cast: CastMember[] }> {
+    if (!movieId) {
+      return throwError('Movie ID is invalid or undefined');
+    }
+
+    const url = `${this.baseUrl}/movie/${movieId}/credits?language=en-US&api_key=${this.apiKey}`;
+    return this.http.get<{ cast: CastMember[] }>(url).pipe(
       catchError((error) => {
         return throwError(error);
       })

@@ -1,0 +1,40 @@
+article.cast {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 327px;
+  gap: 20px;
+
+  .cast-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 120px;
+    .cast-member-image {
+      width: 120px;
+      height: 120px;
+
+      img {
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+
+    .cast-member-name {
+      font-size: 12px;
+      line-height: 18px;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (min-width: 512px) {
+  article.cast {
+    width: 100%;
+  }
+}
