@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Movie } from '../models/movie.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private baseUrl = 'https://api.themoviedb.org/3';
-  private apiKey = 'c70c2c6709bdbe1673fd7853df05d18d';
+  private baseUrl = environment.baseUrl;
+  private apiKey = environment.apiKey;
 
   constructor(private http: HttpClient) {}
 
@@ -17,23 +18,8 @@ export class ApiService {
     return this.http.get<{ results: Movie[] }>(url);
   }
 
-  getPopularMovies(): Observable<{ results: Movie[] }> {
-    const url = `${this.baseUrl}/movie/popular?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get<{ results: Movie[] }>(url);
-  }
-
-  getNowPlayingMovies(): Observable<{ results: Movie[] }> {
-    const url = `${this.baseUrl}/movie/now_playing?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get<{ results: Movie[] }>(url);
-  }
-
-  getTopRatedMovies(): Observable<{ results: Movie[] }> {
-    const url = `${this.baseUrl}/movie/top_rated?language=en-US&page=1&api_key=${this.apiKey}`;
-    return this.http.get<{ results: Movie[] }>(url);
-  }
-
-  getUpcomingMovies(): Observable<{ results: Movie[] }> {
-    const url = `${this.baseUrl}/movie/upcoming?language=en-US&page=1&api_key=${this.apiKey}`;
+  getMoviesByCategory(category: string): Observable<{ results: Movie[] }> {
+    const url = `${this.baseUrl}/movie/${category}?language=en-US&page=1&api_key=${this.apiKey}`;
     return this.http.get<{ results: Movie[] }>(url);
   }
 

@@ -10,8 +10,6 @@
     class="card-img-container"
     *ngIf="showElement === 'homePageCard' || showElement === 'searchCard'"
   >
-    <span class="tooltip">{{ movie?.title }}</span>
-
     <a [routerLink]="['/single-movie']" [state]="{ movieId: movie?.id }">
       <img
         [src]="

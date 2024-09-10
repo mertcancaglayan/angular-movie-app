@@ -27,7 +27,11 @@
       </li>
     </ul>
   </div>
-  <div class="display-movies">
+  <div *ngIf="error" class="error-message">
+    <p>Error fetching movies. Please try again later.</p>
+  </div>
+
+  <div class="display-movies" *ngIf="!error">
     <app-movie-card
       *ngFor="let movie of movies"
       [movie]="movie"

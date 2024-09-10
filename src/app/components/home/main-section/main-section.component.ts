@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api-service.service';
 import { CommonModule } from '@angular/common';
 import { MovieCardComponent } from '../../movie-card/movie-card.component';
 import { Movie } from '../../../models/movie.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-section',
@@ -25,56 +25,18 @@ export class MainSectionComponent implements OnInit {
   }
 
   fetchMoviesByCategory(category: string): void {
-    switch (category) {
-      case 'upcoming':
-        this.apiService.getUpcomingMovies().subscribe(
-          (response) => {
-            this.movies = response.results;
-            this.error = false;
-          },
-          (error) => {
-            console.error('Error fetching upcoming movies:', error);
-            this.error = true;
-          }
-        );
-        break;
-      case 'top_rated':
-        this.apiService.getTopRatedMovies().subscribe(
-          (response) => {
-            this.movies = response.results;
-            this.error = false;
-          },
-          (error) => {
-            console.error('Error fetching top rated movies:', error);
-            this.error = true;
-          }
-        );
-        break;
-      case 'popular':
-        this.apiService.getPopularMovies().subscribe(
-          (response) => {
-            this.movies = response.results;
-            this.error = false;
-          },
-          (error) => {
-            console.error('Error fetching popular movies:', error);
-            this.error = true;
-          }
-        );
-        break;
-      default:
-        this.apiService.getNowPlayingMovies().subscribe(
-          (response) => {
-            this.movies = response.results;
-            this.error = false;
-          },
-          (error) => {
-            console.error('Error fetching now playing movies:', error);
-            this.error = true;
-          }
-        );
-        break;
-    }
+    this.movies = [];
+    this.error = false;
+
+    this.apiService.getMoviesByCategory(category).subscribe(
+      (response) => {
+        this.movies = response.results;
+      },
+      (error) => {
+        console.error(`Error fetching ${category} movies:`, error);
+        this.error = true;
+      }
+    );
   }
 
   getPosterUrl(posterPath: string): string {
