@@ -29,68 +29,12 @@
           }}
         </p>
       </article>
-      <article *ngIf="detailSection === 'reviews'" class="reviews">
-        <div class="review">
-          <div class="user">
-            <div class="user-image">
-              <img
-                src="../../../assets/images/placeholder-user-profile.jpg"
-                alt=""
-              />
-            </div>
-            <div class="user-rating"><p>6.3</p></div>
-          </div>
-          <div class="review-content">
-            <h5 class="user-name">Mert Can Çağlayan</h5>
-            <p class="review-text">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae,
-              voluptates iusto. Id ea, maiores doloribus nobis sed nesciunt odit
-              provident excepturi consequatur cumque dolorum molestias nostrum
-              exercitationem at. Excepturi, dolore.
-            </p>
-          </div>
-        </div>
-        <div class="review">
-          <div class="user">
-            <div class="user-image">
-              <img
-                src="../../../assets/images/placeholder-user-profile.jpg"
-                alt=""
-              />
-            </div>
-            <div class="user-rating"><p>6.3</p></div>
-          </div>
-          <div class="review-content">
-            <h5 class="user-name">Mert Can Çağlayan</h5>
-            <p class="review-text">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae,
-              voluptates iusto. Id ea, maiores doloribus nobis sed nesciunt odit
-              provident excepturi consequatur cumque dolorum molestias nostrum
-              exercitationem at. Excepturi, dolore.
-            </p>
-          </div>
-        </div>
-        <div class="review">
-          <div class="user">
-            <div class="user-image">
-              <img
-                src="../../../assets/images/placeholder-user-profile.jpg"
-                alt=""
-              />
-            </div>
-            <div class="user-rating"><p>6.3</p></div>
-          </div>
-          <div class="review-content">
-            <h5 class="user-name">Mert Can Çağlayan</h5>
-            <p class="review-text">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae,
-              voluptates iusto. Id ea, maiores doloribus nobis sed nesciunt odit
-              provident excepturi consequatur cumque dolorum molestias nostrum
-              exercitationem at. Excepturi, dolore.
-            </p>
-          </div>
-        </div>
-      </article>
+
+      <app-reviews
+        [movieReviews]="movieReviews"
+        *ngIf="detailSection === 'reviews'"
+      ></app-reviews>
+
       <article *ngIf="detailSection === 'cast'" class="cast">
         <div class="cast-member">
           <div class="cast-member-image">

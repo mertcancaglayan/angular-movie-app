@@ -43,15 +43,7 @@ export class SingleMovieComponent implements OnInit {
       }
     });
     if (this.movieId) {
-      this.apiService.getMovieDetails(this.movieId).subscribe({
-        next: (movie: Movie) => {
-          this.movie = movie;
-          this.error = false;
-        },
-        error: () => {
-          this.error = true;
-        },
-      });
+      this.fetchMovieDetails(this.movieId)
     }
   }
 

@@ -17,5 +17,6 @@ export class PostMetaComponent {
       return new Date(date).getFullYear().toString();
     }
     return '1923';
+    
   }
 }
