@@ -6,6 +6,13 @@ import { TitleAreaComponent } from './title-area/title-area.component';
 import { ApiService } from '../../../services/api-service.service';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { CastComponent } from './cast/cast.component';
+import { Store } from '@ngrx/store';
+import * as MovieActions from '../../../states/movie.action';
+import { Observable } from 'rxjs';
+import {
+  selectMovieCast,
+  selectMovieReviews,
+} from '../../../states/movie.selectors';
 
 @Component({
   selector: 'app-single-movie-details',
@@ -25,9 +32,9 @@ import { CastComponent } from './cast/cast.component';
 })
 export class SingleMovieDetailsComponent {
   @Input() movie: Movie | undefined;
-  @Input() movieId: number | undefined;
-  movieReviews: Review[] = [];
-  movieCast: CastMember[] = [];
+  @Input() movieId!: number;
+  movieReviews$: Observable<Review[]>;
+  movieCast$: Observable<CastMember[]>;
   error: boolean = false;
   detailSection: string = 'about';
 
@@ -35,7 +42,17 @@ export class SingleMovieDetailsComponent {
     this.detailSection = section;
   }
 
-  constructor(private apiService: ApiService) {}
+  constructor(private store: Store, private apiService: ApiService) {
+    this.store.dispatch(
+      MovieActions.loadMovieReviews({ movieId: this.movieId })
+    );
+    this.movieCast$ = this.store.select(selectMovieCast);
+
+    this.store.dispatch(
+      MovieActions.loadMovieReviews({ movieId: this.movieId })
+    );
+    this.movieReviews$ = this.store.select(selectMovieReviews);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['movieId'] && this.movieId) {
@@ -45,28 +62,15 @@ export class SingleMovieDetailsComponent {
   }
 
   getMovieReviews(id: number): void {
-    this.apiService.getMovieReviews(id).subscribe({
-      next: (response) => {
-        this.movieReviews = response.results;
-        this.error = false;
-      },
-      error: (error) => {
-        console.error('Error fetching reviews:', error);
-        this.error = true;
-      },
-    });
+    this.store.dispatch(
+      MovieActions.loadMovieReviews({ movieId: this.movieId })
+    );
+    this.movieReviews$ = this.store.select(selectMovieReviews);
   }
 
   getMovieCast(id: number): void {
-    this.apiService.getMovieCast(id).subscribe({
-      next: (response) => {
-        this.movieCast = response.cast;
-        this.error = false;
-      },
-      error: (error) => {
-        console.error('Error fetching reviews:', error);
-        this.error = true;
-      },
-    });
+    this.store.dispatch(MovieActions.loadMovieCast({ movieId: id }));
+
+    this.movieCast$ = this.store.select(selectMovieCast);
   }
 }

@@ -1,7 +1,7 @@
 <div *ngIf="!error" class="slider-container">
-  <div class="slider snaps-inline">
+  <div #slider class="slider snaps-inline">
     <app-slide
-      *ngFor="let movie of popularMovies; let i = index"
+      *ngFor="let movie of trendingMovies$ | async; let i = index"
       [movie]="movie"
       [listNumber]="i + 1"
     ></app-slide>

@@ -1,14 +1,24 @@
 import {
   Component,
-  Input,
   AfterViewInit,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
   Inject,
   PLATFORM_ID,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { SlideComponent } from './slide/slide.component';
 import { CommonModule } from '@angular/common';
+import { SlideComponent } from './slide/slide.component';
 import { Movie } from '../../../models/movie.model';
+import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import {
+  selectError,
+  selectTrendingMovies,
+} from '../../../states/movie.selectors';
+import * as MovieActions from '../../../states/movie.action';
 
 @Component({
   selector: 'app-slider',
@@ -17,21 +27,53 @@ import { Movie } from '../../../models/movie.model';
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],
 })
-export class SliderComponent implements AfterViewInit {
-  @Input() popularMovies: Movie[] = [];
+export class SliderComponent implements AfterViewInit, OnInit, OnDestroy {
+  @ViewChild('slider') sliderRef!: ElementRef<HTMLElement>;
+
+  trendingMovies$: Observable<Movie[]>;
+  error$: Observable<any>;
+  private errorSubscription!: Subscription;
+
   slider!: HTMLElement;
   error: boolean = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    private store: Store,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.error$ = this.store.select(selectError);
+    this.trendingMovies$ = this.store.select(selectTrendingMovies);
+  }
+
+  ngOnInit(): void {
+    this.loadTrendingMovies();
+
+    this.errorSubscription = this.error$.subscribe((error) => {
+      if (error) {
+        console.error('Error fetching trending movies:', error);
+        this.error = true;
+      }
+    });
+  }
+
+  loadTrendingMovies() {
+    this.store.dispatch(MovieActions.loadTrendingMovies());
+  }
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.slider = document.querySelector<HTMLElement>('.slider')!;
+      this.slider = this.sliderRef?.nativeElement;
       if (!this.slider) {
         this.error = true;
-        console.error(this.error);
+        console.error('Slider element not found.');
         return;
       }
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.errorSubscription) {
+      this.errorSubscription.unsubscribe();
     }
   }
 

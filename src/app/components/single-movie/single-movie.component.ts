@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../layouts/header/header.component';
 import { RateScreenComponent } from './rate-screen/rate-screen.component';
 import { Router, NavigationEnd } from '@angular/router';
-import { ApiService } from '../../services/api-service.service';
 import { CommonModule } from '@angular/common';
 import { BannerComponent } from './banner/banner.component';
 import { SingleMovieDetailsComponent } from './single-movie-details/single-movie-details.component';
 import { Movie } from '../../models/movie.model';
-import { TabbarComponent } from "../layouts/tabbar/tabbar.component";
+import { TabbarComponent } from '../layouts/tabbar/tabbar.component';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectError, selectMovieDetails } from '../../states/movie.selectors';
+import * as MovieActions from '../../states/movie.action';
 
 @Component({
   selector: 'app-single-movie',
@@ -18,46 +21,46 @@ import { TabbarComponent } from "../layouts/tabbar/tabbar.component";
     CommonModule,
     BannerComponent,
     SingleMovieDetailsComponent,
-    TabbarComponent
-],
+    TabbarComponent,
+  ],
   templateUrl: './single-movie.component.html',
   styleUrls: ['./single-movie.component.scss'],
 })
 export class SingleMovieComponent implements OnInit {
   title: string = 'Detail';
   movieId: number;
-  movie: Movie | undefined;
-  error: boolean = false;
+  movie$: Observable<Movie | null>;
+  error$: Observable<Boolean>;
   isMovieInFav: boolean = false;
 
-  constructor(private router: Router, private apiService: ApiService) {
+  constructor(private router: Router, private store: Store) {
+    this.error$ = this.store.select(selectError);
+
     const navigation = this.router.getCurrentNavigation();
-    this.movieId = navigation?.extras?.state?.['movieId'];
+    this.movieId = navigation?.extras?.state?.['movieId'] || null;
+
+    if (this.movieId) {
+      this.store.dispatch(
+        MovieActions.loadMovieDetails({ movieId: this.movieId })
+      );
+    }
+    this.movie$ = this.store.select(selectMovieDetails);
   }
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const navigation = this.router.getCurrentNavigation();
-        this.movieId = navigation?.extras?.state?.['movieId'];
+        const newMovieId = navigation?.extras?.state?.['movieId'];
+
+        if (newMovieId && newMovieId !== this.movieId) {
+          this.movieId = newMovieId;
+          this.store.dispatch(
+            MovieActions.loadMovieDetails({ movieId: this.movieId })
+          );
+        }
       }
     });
-    if (this.movieId) {
-      this.fetchMovieDetails(this.movieId)
-    }
-  }
-
-  fetchMovieDetails(id: number): void {
-    this.apiService.getMovieDetails(id).subscribe(
-      (response) => {
-        this.movie = response;
-        this.error = false;
-      },
-      (error) => {
-        console.error('Error fetching movies:', error);
-        this.error = true;
-      }
-    );
   }
 
   navigateToArticle(movie: Movie): void {
@@ -65,10 +68,10 @@ export class SingleMovieComponent implements OnInit {
   }
 
   checkIfMovieInFav(): boolean {
-    if (this.movie) {
+    if (this.movie$) {
       let favMovies = JSON.parse(localStorage.getItem('fav-movies') || '[]');
       this.isMovieInFav = favMovies.some(
-        (favMovie: Movie) => favMovie.id === this.movie?.id
+        (favMovie: Movie) => favMovie.id === this.movieId
       );
     }
     return this.isMovieInFav;

@@ -1,15 +1,23 @@
 <div class="page-padding">
   <app-tabbar></app-tabbar>
-  <app-header
-    [title]="title"
-    [movie]="movie"
-    [isMovieInFav]="checkIfMovieInFav()"
-  ></app-header>
 
-  <app-banner [movie]="movie"></app-banner>
-  <app-single-movie-details
-    [movie]="movie"
-    [movieId]="movieId"
-  ></app-single-movie-details>
-  <app-rate-screen></app-rate-screen>
+  <ng-container *ngIf="movie$ | async as movie; else loading">
+    <app-header
+      [title]="title"
+      [movie]="movie"
+      [isMovieInFav]="checkIfMovieInFav()"
+    ></app-header>
+
+    <app-banner [movie]="movie"></app-banner>
+    <app-single-movie-details
+      [movie]="movie"
+      [movieId]="movieId"
+    ></app-single-movie-details>
+
+    <app-rate-screen></app-rate-screen>
+  </ng-container>
+
+  <ng-template #loading>
+    <p>Loading movie details...</p>
+  </ng-template>
 </div>
