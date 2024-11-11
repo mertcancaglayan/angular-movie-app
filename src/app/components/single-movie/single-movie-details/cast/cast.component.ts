@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CastMember } from '../../../../models/movie.model';
 
 @Component({
   selector: 'app-cast',
@@ -9,5 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cast.component.scss',
 })
 export class CastComponent {
-  @Input() movieCast: any;
+  @Input() movieCast!: CastMember[] | null;
 }

@@ -31,12 +31,12 @@
       </article>
 
       <app-reviews
-        [movieReviews]="movieReviews"
+        [movieReviews]="movieReviews$ | async"
         *ngIf="detailSection === 'reviews'"
       ></app-reviews>
 
       <app-cast
-        [movieCast]="movieCast"
+        [movieCast]="movieCast$ | async"
         *ngIf="detailSection === 'cast'"
       ></app-cast>
     </div>

@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../services/api-service.service';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { MovieCardComponent } from '../../movie-card/movie-card.component';
 import { Movie } from '../../../models/movie.model';
-import { Observable } from 'rxjs';
+import * as MovieActions from '../../../states/movie.action';
+import {
+  selectCategoryMovies,
+  selectLoading,
+} from '../../../states/movie.selectors'; // Selectors to access state
 
 @Component({
   selector: 'app-main-section',
@@ -14,37 +19,31 @@ import { Observable } from 'rxjs';
 })
 export class MainSectionComponent implements OnInit {
   homePageCard: string = 'homePageCard';
-  movies: Movie[] = [];
+
+  movies$: Observable<Movie[]>;
+  loading$: Observable<boolean>;
   error: boolean = false;
   selectedCategory: string = 'now_playing';
 
-  constructor(private apiService: ApiService) {}
+  constructor(private store: Store) {
+    this.store.dispatch(
+      MovieActions.loadCategoryMovies({ category: this.selectedCategory })
+    );
 
-  ngOnInit(): void {
-    this.fetchMoviesByCategory(this.selectedCategory);
+    this.movies$ = this.store.select(selectCategoryMovies);
+    this.loading$ = this.store.select(selectLoading);
   }
 
-  fetchMoviesByCategory(category: string): void {
-    this.movies = [];
-    this.error = false;
+  ngOnInit(): void {}
 
-    this.apiService.getMoviesByCategory(category).subscribe(
-      (response) => {
-        this.movies = response.results;
-      },
-      (error) => {
-        console.error(`Error fetching ${category} movies:`, error);
-        this.error = true;
-      }
+  onCategorySelect(category: string): void {
+    this.selectedCategory = category;
+    this.store.dispatch(
+      MovieActions.loadCategoryMovies({ category: this.selectedCategory })
     );
   }
 
   getPosterUrl(posterPath: string): string {
     return `https://image.tmdb.org/t/p/original/${posterPath}`;
-  }
-
-  onCategorySelect(category: string): void {
-    this.selectedCategory = category;
-    this.fetchMoviesByCategory(this.selectedCategory);
   }
 }

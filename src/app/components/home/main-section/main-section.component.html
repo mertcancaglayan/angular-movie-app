@@ -33,7 +33,7 @@
 
   <div class="display-movies" *ngIf="!error">
     <app-movie-card
-      *ngFor="let movie of movies"
+      *ngFor="let movie of movies$ | async"
       [movie]="movie"
       [showElement]="homePageCard"
     ></app-movie-card>
